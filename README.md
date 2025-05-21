@@ -36,7 +36,7 @@ As imagens são pré-processadas com:
 
     accuracy                           0.72      1288
    macro avg       0.72      0.72      0.72      1288
-weighted avg       0.72      0.72      0.72      1288
+  weighted avg       0.72      0.72      0.72      1288
   ```
 
 ### Matriz de Confusão
@@ -58,8 +58,7 @@ O script gera automaticamente os seguintes gráficos para análise de desempenho
 
 ## Estrutura do Projeto
 
-```
-.
+```.
 ├── Dataset/
 │   ├── train/
 │   │   ├── NORMAL/
@@ -130,9 +129,9 @@ Os dados utilizados neste projeto foram obtidos da seguinte base disponível no 
 
 O conjunto de dados foi dividido em duas categorias principais: **radiografias normais** e **radiografias com efusão**. Cada categoria foi subdividida em três partes: treino, validação e teste, conforme a tabela abaixo:
 
-| Conjunto     | Pneumonia | Normal | Total |
+| Conjunto     | efusão | Normal | Total |
 |--------------|-----------|--------|-------|
-| Treinamento  | 807       | 1.200  | 2.007 |
+| Treinamento  | 644      | 644  | 1248 |
 | Validação    | 269       | 400    | 669   |
 | Teste        | 269       | 400    | 669   |
 
