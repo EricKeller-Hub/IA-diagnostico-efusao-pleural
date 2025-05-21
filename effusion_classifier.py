@@ -210,6 +210,9 @@ def main():
     # Plotar histórico de treinamento
     plot_training_history(history)
     
+        # Salvar o modelo treinado
+    model.save('./best_model.h5')
+
     # Avaliar o modelo
     test_loss, test_acc = model.evaluate(test_generator)
     print(f'\nAcurácia no conjunto de teste: {test_acc:.4f}')
@@ -242,3 +245,34 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
+def image_predict(model_path, image_array):
+    """
+    Carrega um modelo salvo (.h5 ou .keras) e faz a predição de uma imagem processada.
+
+    Parâmetros:
+    - model_path: caminho para o modelo salvo (ex: './best_model.h5')
+    - image_array: imagem já pré-processada (shape: (altura, largura) ou (altura, largura, 1))
+
+    Retorna:
+    - Classe prevista (0 ou 1)
+    - Probabilidade associada
+    """
+    from tensorflow.keras.models import load_model
+    import numpy as np
+
+    # Carregar modelo
+    model = load_model(model_path)
+
+    # Garantir o shape correto
+    if len(image_array.shape) == 2:
+        image_array = np.expand_dims(image_array, axis=-1)
+    if len(image_array.shape) == 3:
+        image_array = np.expand_dims(image_array, axis=0)
+
+    # Predição
+    prob = model.predict(image_array)[0][0]
+    pred_class = int(prob > 0.5)
+
+    return pred_class, prob
